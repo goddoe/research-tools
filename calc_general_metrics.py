@@ -1,21 +1,15 @@
 import matplotlib.pyplot as plt
 from sklearn import metrics
-
 from utils import cvt_to_onehot, plot_confusion_matrix
-
 
 # ======================================
 # Prepare Data
 Y_test_idx = [1, 0, 1, 0, 1]
 Y_pred_idx = [1, 0, 0, 0, 1]
 
+# One-hot encoding
 Y_test = cvt_to_onehot(Y_test_idx)
 Y_pred = cvt_to_onehot(Y_pred_idx)
-
-
-# ======================================
-# General Metrics
-
 
 # ======================================
 # Calc precision, recall, fscore and support
@@ -26,10 +20,8 @@ Y_pred = cvt_to_onehot(Y_pred_idx)
                                                     y_pred=Y_pred_idx,
                                                     beta=1.,
                                                     average='binary')
-
 print("precision: {}\nrecall: {}\nfscore: {}\nsupport: {}".format(
         precision, recall, fscore, support))
-
 
 # ======================================
 # Draw Roc curve and Calculate AUC
@@ -48,16 +40,12 @@ ax.set_ylabel('True Positive Rate')
 ax.set_title(title)
 ax.legend(loc='best', frameon=False)
 
-
 # ======================================
 # Confusion Matrix
-
 cm = metrics.confusion_matrix(Y_test_idx, Y_pred_idx)
 classes = ['bad', 'good']
-
 title = 'Confusion matrix'
 fig, ax = plot_confusion_matrix(cm,
                                 classes=classes,
                                 normalize=True,
                                 title=title)
-

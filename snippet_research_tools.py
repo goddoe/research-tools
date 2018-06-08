@@ -11,6 +11,7 @@ Y_pred_idx = [1, 0, 0, 0, 1]
 Y_test = cvt_to_onehot(Y_test_idx)
 Y_pred = cvt_to_onehot(Y_pred_idx)
 
+
 # ======================================
 # Calc precision, recall, fscore and support
 (precision,
@@ -20,14 +21,14 @@ Y_pred = cvt_to_onehot(Y_pred_idx)
                                                     y_pred=Y_pred_idx,
                                                     beta=1.,
                                                     average='binary')
+ print("-"*30)
 print("precision: {}\nrecall: {}\nfscore: {}\nsupport: {}".format(
-        precision, recall, fscore, support))
+        precision, recall, fscore, support), end="\n\n")
 
 # ======================================
-# Draw Roc curve and Calculate AUC
+# Draw ROC curve and Calculate AUC
 fpr, tpr, thresholds = metrics.roc_curve(Y_test_idx, Y_pred[:, 1], pos_label=1)
 auc_score = metrics.auc(fpr, tpr)
-
 title = 'ROC curve'
 fig = plt.figure(title)
 ax = fig.add_subplot(111)
@@ -39,6 +40,8 @@ ax.set_xlabel('False Positive Rate')
 ax.set_ylabel('True Positive Rate')
 ax.set_title(title)
 ax.legend(loc='best', frameon=False)
+print("-"*30)
+print("AUC: {}".format(auc_score), end="\n\n")
 
 # ======================================
 # Confusion Matrix
@@ -49,3 +52,6 @@ fig, ax = plot_confusion_matrix(cm,
                                 classes=classes,
                                 normalize=True,
                                 title=title)
+print("-"*30)
+print("Confusion Matrix")
+print(cm, end="\n\n")

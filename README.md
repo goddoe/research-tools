@@ -1,6 +1,6 @@
 # Research Tools
 
-Collections of general metrics calculation and graphs snippets.
+Collection of general metric calculations and drawing graphs for research.
 
 ## Contains...
 

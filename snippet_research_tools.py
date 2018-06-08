@@ -4,12 +4,12 @@ from utils import cvt_to_onehot, plot_confusion_matrix
 
 # ======================================
 # Prepare Data
-Y_test_idx = [1, 0, 1, 0, 1]
-Y_pred_idx = [1, 0, 0, 0, 1]
+Y_test_idx = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+Y_pred_idx = [1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1]
 
 # One-hot encoding
-Y_test = cvt_to_onehot(Y_test_idx)
-Y_pred = cvt_to_onehot(Y_pred_idx)
+Y_test = cvt_to_onehot(Y_test_idx, dim=2)
+Y_pred = cvt_to_onehot(Y_pred_idx, dim=2)
 
 
 # ======================================
@@ -21,7 +21,7 @@ Y_pred = cvt_to_onehot(Y_pred_idx)
                                                     y_pred=Y_pred_idx,
                                                     beta=1.,
                                                     average='binary')
- print("-"*30)
+print("-"*30)
 print("precision: {}\nrecall: {}\nfscore: {}\nsupport: {}".format(
         precision, recall, fscore, support), end="\n\n")
 
@@ -55,3 +55,5 @@ fig, ax = plot_confusion_matrix(cm,
 print("-"*30)
 print("Confusion Matrix")
 print(cm, end="\n\n")
+
+plt.show()
